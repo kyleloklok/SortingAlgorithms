@@ -111,7 +111,7 @@ int linked_list::remove(const int ind){
 }
 
 void linked_list::sort(){
-    head->next = mergesort(head->next); 
+    head->next = mergesort2(head->next); 
 }
 
 linked_list::node* linked_list::mergesort(linked_list::node* c){
@@ -143,16 +143,32 @@ linked_list::node* linked_list::mergesort(linked_list::node* c){
     return dummy.next; 
 }
 
-linked_list::node* linked_list::mergesort(linked_list::node* c, const int size){
+linked_list::node* linked_list::mergesort2(linked_list::node* c){
+    if(c->next != tail){
+        node* save = c; 
+        node* dummy = c; 
+        while(dummy->next->next != tail){
+            dummy = dummy->next->next;
+            c = c->next; 
+        }
+        node* next = c->next; 
+        c->next = tail; 
+        return merge(mergesort2(save), mergesort2(next)); 
+    }
+    return c; 
+}
+
+linked_list::node* linked_list::mergesort3(linked_list::node* c, const int size){
     if(c->next != tail){
         node* save = c; 
         for(int i = 0; i < size / 2 - 1; i++) c = c->next; 
         node* mid = c->next; 
         c->next = tail; 
-        return merge(mergesort(save, size / 2), mergesort(mid, size / 2)); 
+        return merge(mergesort3(save, size / 2), mergesort3(mid, size / 2)); 
     }
     return c; 
 }
+
 
 
 

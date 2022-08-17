@@ -71,6 +71,7 @@ class linked_list{
             return save; 
         } 
         node* mergesort(node* c); 
-        node* mergesort(node* c, const int size);
+        node* mergesort2(node* c);
+        node* mergesort3(node* c, const int size); 
 };
 #endif
