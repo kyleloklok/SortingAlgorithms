@@ -50,7 +50,7 @@ void p_queue::checksize(){
         heap = arr; 
     }
     else if(size() == heap_size / 4){
-        heap_size *= 2; 
+        heap_size /= 2; 
         int* arr = new int[heap_size]; 
         for(int i = 0; i < size(); i++){
             arr[i] = heap[i]; 
